@@ -1,0 +1,1 @@
+INSERT INTO battles (title, lyrics, uploaded_at) VALUES ('Napoleon vs Charlemagne', 'test', CURRENT_TIMESTAMP);
