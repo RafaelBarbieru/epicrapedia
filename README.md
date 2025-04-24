@@ -13,3 +13,12 @@ Web encyclopedia for filter rich information about everything that has to do wit
 - Frontend language: Typescript
 - Frontend framework: React
 - IDE: IntelliJ IDEA 2024.2.2 (Ultimate Edition)
+
+# How to run locally
+1. Make sure you have Docker installed.
+2. For the API, go into the /backend folder.
+3. Open a terminal and execute `docker-compose up --build`.
+4. Backend is up. Hot reload is enabled by default, just build and wait a few seconds and you'll have your changes locally deployed.
+
+## Not a fan of hot reload?
+You can disable hot reload by going to the Dockerfile and commenting the "Hot reload flow (dev)" section and uncommenting the "JAR flow (prod)" section.
