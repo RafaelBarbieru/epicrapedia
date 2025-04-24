@@ -12,6 +12,7 @@ class BattlesController(
 
     @GetMapping("/battles")
     fun getAllBattles(): List<BattleDto> {
+        System.out.println("Hello world")
         return battlesService.getAllBattles()
     }
 

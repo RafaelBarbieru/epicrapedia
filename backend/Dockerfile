@@ -11,18 +11,19 @@ WORKDIR app/
 COPY pom.xml .
 RUN mvn dependency:resolve
 COPY src ./src
-RUN mvn package -DskipTests
+RUN mvn package -DskipTests -Dmaven.repo.local=target/dependency
 COPY . .
 
 # Runtime phase
 FROM eclipse-temurin:21-jdk-alpine
 WORKDIR app/
 
-# Copy the .jar file from the build
-COPY --from=build /app/target/*.jar app.jar
+# JAR flow (prod)
+#COPY --from=build /app/target/*.jar app.jar
+#ENV SPRING_PROFILES_ACTIVE=local
+#ENTRYPOINT ["java", "-jar", "app.jar"]
 
-# Set Spring active profile
-ENV SPRING_PROFILES_ACTIVE=local
-
-# Execute app
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Hot reload flow (dev)
+COPY --from=build /app/target/classes /app/target/classes
+COPY --from=build /app/target/dependency /app/target/dependency
+ENTRYPOINT ["java", "-cp", "target/classes:target/dependency/*", "me.rbarbieru.epicrapedia.EpicrapediaApplicationKt"]
