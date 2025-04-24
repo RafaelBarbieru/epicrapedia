@@ -1,24 +1,45 @@
-# Epic Rapedia
-Web encyclopedia for filter rich information about everything that has to do with Epic Rap Battles of History's YouTube channel.
+# Epic Rap-edia
+A fullstack web encyclopedia to explore and organize rich content related to the YouTube channel **Epic Rap Battles of History**.
 
-# Tech stack
-- Backend language: Kotlin
-- Backend framework: Spring Boot
-- API: GraphQL
-- Database management system: PostgreSQL
-- Database client: DBeaver
-- Database migrations: Flyway
-- Object relational mapping: Spring Data JPA (Hibernate)
+## Tech stack
+
+### Architecture
+
+- Docker (multi-container setup with backend, database, and dev tooling)
+
+### Frontend
+
+- Language: Typescript
+- Framework: React
+
+### Backend
+
+- Language: Kotlin
+- Framework: Spring Boot 3
+- API type: GraphQL
 - Security: Spring Security
-- Frontend language: Typescript
-- Frontend framework: React
-- IDE: IntelliJ IDEA 2024.2.2 (Ultimate Edition)
+- Migrations: Flyway
+- ORM: Spring Data JPA (Hibernate)
 
-# How to run locally
-1. Make sure you have Docker installed.
-2. For the API, go into the /backend folder.
-3. Open a terminal and execute `docker-compose up --build`.
-4. Backend is up. Hot reload is enabled by default, just build and wait a few seconds and you'll have your changes locally deployed.
+### Database
 
-## Not a fan of hot reload?
-You can disable hot reload by going to the Dockerfile and commenting the "Hot reload flow (dev)" section and uncommenting the "JAR flow (prod)" section.
+- PostgreSQL (containerized)
+- DB access via DBeaver (local)
+
+### Other tools
+
+- IDE: IntelliJ IDEA Ultimate
+
+## How to run locally
+
+1. Make sure Docker is installed on your system.
+2. Clone the repository and navigate to the `/backend` folder.
+3. Run `docker-compose up --build` in a terminal.
+4. Your backend will be running on `http://localhost:8080` with **hot reload enabled**. Just build the project (e.g., Ctrl+F9 in IntelliJ) and your changes will be applied instantly.
+
+### Prefer running a production-style JAR?
+
+You can disable hot reload by editing the `Dockerfile`:
+
+- Comment the **DevTools flow (dev)** section
+- Uncomment the **JAR flow (prod)** section
